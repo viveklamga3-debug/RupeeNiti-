@@ -314,20 +314,22 @@ export function EmiCalculator() {
       </div>
 
       {/* Year-wise Graph */}
-      <div className="mt-12 bg-white shadow-sm border border-gray-200 rounded-xl p-6 overflow-hidden">
-        <h3 className="text-2xl font-bold text-[#14532D] mb-6">Year-wise Principal & Interest Breakdown</h3>
-        <div className="h-80 w-full min-w-[600px] overflow-x-auto">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={yearlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="year" />
-              <YAxis tickFormatter={(val) => `₹${val/100000}L`} />
-              <Tooltip formatter={(value: number) => formatCurrency(value)} />
-              <Legend />
-              <Bar dataKey="Principal" stackId="a" fill="#16A34A" />
-              <Bar dataKey="Interest" stackId="a" fill="#DC2626" />
-            </BarChart>
-          </ResponsiveContainer>
+      <div className="mt-12 bg-white shadow-sm border border-gray-200 rounded-xl p-4 sm:p-6 overflow-hidden">
+        <h3 className="text-xl sm:text-2xl font-bold text-[#14532D] mb-6">Year-wise Principal & Interest Breakdown</h3>
+        <div className="w-full">
+          <div className="h-80 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={yearlyData} margin={{ top: 20, right: 10, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="year" tick={{ fontSize: 12 }} minTickGap={15} />
+                <YAxis tickFormatter={(val) => `₹${val/100000}L`} width={60} tick={{ fontSize: 12 }} />
+                <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                <Legend />
+                <Bar dataKey="Principal" stackId="a" fill="#16A34A" />
+                <Bar dataKey="Interest" stackId="a" fill="#DC2626" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
