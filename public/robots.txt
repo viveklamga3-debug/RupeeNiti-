@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rupeeniti.com/sitemap.xml
+Sitemap: https://rupeeniti.in/sitemap.xml
