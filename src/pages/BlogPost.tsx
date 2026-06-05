@@ -1,9 +1,9 @@
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { BLOG_POSTS } from './BlogIndex';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { AdPlaceholder } from '@/src/components/AdPlaceholder';
+import { SEO } from '@/src/components/SEO';
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -13,22 +13,29 @@ export function BlogPost() {
     return <Navigate to="/blog" replace />;
   }
 
+  const postSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "author": { "@type": "Organization", "name": post.author },
+    "datePublished": new Date(post.date).toISOString()
+  };
+
   return (
     <article className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <Helmet>
-        <title>{post.title} | RupeeNiti</title>
-        <meta name="description" content={post.excerpt} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": post.title,
-            "description": post.excerpt,
-            "author": { "@type": "Organization", "name": post.author },
-            "datePublished": new Date(post.date).toISOString()
-          })}
-        </script>
-      </Helmet>
+      <SEO 
+        title={`${post.title} | RupeeNiti`}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        type="article"
+        schemaList={[postSchema]}
+        breadcrumb={[
+          {name: 'Home', item: '/'}, 
+          {name: 'Blog', item: '/blog'},
+          {name: post.title, item: `/blog/${post.slug}`}
+        ]}
+      />
 
       <div className="mb-8">
         <Link to="/blog" className="inline-flex items-center text-gray-500 hover:text-[#16A34A] transition-colors mb-6">

@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useRef } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Legend, ResponsiveContainer } from 'recharts';
 import { Download, AlertCircle, Info, Calculator } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { AdPlaceholder } from '@/src/components/AdPlaceholder';
+import { SEO } from '@/src/components/SEO';
 
 function formatCurrency(v: number) {
   return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(Math.round(v));
@@ -169,12 +169,24 @@ export function IncomeTax() {
     }
   };
 
+  const appSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Income Tax Calculator 2025-26",
+    "url": "https://rupeeniti.in/income-tax",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All"
+  };
+
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Helmet>
-        <title>Income Tax Calculator FY 2025-26 — Old vs New Regime | RupeeNiti</title>
-        <meta name="description" content="Compare Old vs New Regime income tax for FY 2025-26. See which saves you more money. Free, instant, no signup required." />
-      </Helmet>
+      <SEO 
+        title="Income Tax Calculator FY 2025-26 — Old vs New Regime | RupeeNiti"
+        description="Compare Old vs New Regime income tax for FY 2025-26. See which saves you more money. Free, instant, no signup required."
+        path="/income-tax"
+        schemaList={[appSchema]}
+        breadcrumb={[{name: 'Home', item: '/'}, {name: 'Tax Calculator', item: '/income-tax'}]}
+      />
 
       <div className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
         <div>

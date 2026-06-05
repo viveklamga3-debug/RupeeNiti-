@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Calendar, User } from 'lucide-react';
+import { SEO } from '@/src/components/SEO';
 
 export const BLOG_POSTS = [
   {
@@ -37,10 +37,12 @@ export const BLOG_POSTS = [
 export function BlogIndex() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <Helmet>
-        <title>Finance Blog | RupeeNiti</title>
-        <meta name="description" content="Guides on how to save income tax, calculate EMIs, and understand your finances better in India." />
-      </Helmet>
+      <SEO 
+        title="Finance Blog | RupeeNiti"
+        description="Guides on how to save income tax, calculate EMIs, and understand your finances better in India."
+        path="/blog"
+        breadcrumb={[{name: 'Home', item: '/'}, {name: 'Blog', item: '/blog'}]}
+      />
 
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-[#14532D]">Money Wisdom</h1>

@@ -1,14 +1,17 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Mail, MessageSquare } from 'lucide-react';
 import { AdPlaceholder } from '@/src/components/AdPlaceholder';
+import { SEO } from '@/src/components/SEO';
 
 export function Contact() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
-      <Helmet>
-        <title>Contact Us | RupeeNiti</title>
-      </Helmet>
+      <SEO 
+        title="Contact Us | RupeeNiti"
+        description="Get in touch with the RupeeNiti team. We'd love to hear your feedback or answer any questions about our calculators."
+        path="/contact"
+        breadcrumb={[{name: 'Home', item: '/'}, {name: 'Contact', item: '/contact'}]}
+      />
       
       <div className="text-center mb-12">
         <h1 className="text-3xl font-bold text-[#14532D]">Get in Touch</h1>

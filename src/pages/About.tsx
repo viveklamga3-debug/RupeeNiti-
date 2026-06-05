@@ -1,13 +1,16 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { AdPlaceholder } from '@/src/components/AdPlaceholder';
+import { SEO } from '@/src/components/SEO';
 
 export function About() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
-      <Helmet>
-        <title>About Us | RupeeNiti</title>
-      </Helmet>
+      <SEO 
+        title="About Us | RupeeNiti"
+        description="Learn about RupeeNiti, India's free, no-login financial calculator web application for EMI and Income Tax calculations."
+        path="/about"
+        breadcrumb={[{name: 'Home', item: '/'}, {name: 'About', item: '/about'}]}
+      />
       <h1 className="text-3xl font-bold text-[#14532D] mb-6">About RupeeNiti</h1>
       <div className="prose prose-green max-w-none text-gray-700">
         <p><strong>RupeeNiti</strong> (meaning Money Wisdom in Hindi) is a free, no-login financial calculator web application built specifically for Indian users.</p>

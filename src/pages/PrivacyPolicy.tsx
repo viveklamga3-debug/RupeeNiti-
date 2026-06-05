@@ -1,12 +1,15 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from '@/src/components/SEO';
 
 export function PrivacyPolicy() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
-      <Helmet>
-        <title>Privacy Policy | RupeeNiti</title>
-      </Helmet>
+      <SEO 
+        title="Privacy Policy | RupeeNiti"
+        description="Privacy policy for RupeeNiti. Learn how we protect your data while using our EMI and Tax calculators."
+        path="/privacy-policy"
+        breadcrumb={[{name: 'Home', item: '/'}, {name: 'Privacy Policy', item: '/privacy-policy'}]}
+      />
       <h1 className="text-3xl font-bold text-[#14532D] mb-6">Privacy Policy</h1>
       <div className="prose prose-green max-w-none text-gray-700">
         <p>Last updated: May 2026</p>

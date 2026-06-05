@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Calculator, Landmark, Zap, Shield, Smartphone, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { AdPlaceholder } from '@/src/components/AdPlaceholder';
+import { SEO } from '@/src/components/SEO';
 
 export function Home() {
   const [ctc, setCtc] = useState<number>(1200000);
@@ -46,24 +47,24 @@ export function Home() {
     { q: "Does the app work well on mobile?", a: "Yes, RupeeNiti is a mobile-first app designed specifically to work smoothly on Android and iOS smartphones without zooming or side-scrolling." }
   ];
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    }))
+  };
+
   return (
     <div className="w-full">
-      <Helmet>
-        <title>RupeeNiti — Free EMI and Income Tax Calculator India</title>
-        <meta name="description" content="Calculate home loan, car loan, personal loan EMIs and compare Old vs New income tax regime for FY 2025-26. Free, instant, no login." />
-        {/* Basic FAQ Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": faqs.map(faq => ({
-              "@type": "Question",
-              "name": faq.q,
-              "acceptedAnswer": { "@type": "Answer", "text": faq.a }
-            }))
-          })}
-        </script>
-      </Helmet>
+      <SEO 
+        title="RupeeNiti — Free EMI and Income Tax Calculator India"
+        description="Calculate home loan, car loan, personal loan EMIs and compare Old vs New income tax regime for FY 2025-26. Free, instant, no login."
+        path="/"
+        schemaList={[faqSchema]}
+      />
 
       {/* Hero Section */}
       <section className="bg-[#14532D] text-white py-16 sm:py-24 overflow-hidden relative">

@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Legend } from 'recharts';
 import { Link, Copy } from 'lucide-react';
 import { AdPlaceholder } from '@/src/components/AdPlaceholder';
+import { SEO } from '@/src/components/SEO';
 
 const TABS = [
   { id: 'home', title: 'Home Loan', defaults: { amount: 5000000, rate: 8.5, tenure: 20 }, range: { amount: [500000, 50000000], rate: [6, 15], tenure: [1, 30] } },
@@ -123,12 +123,24 @@ export function EmiCalculator() {
     { name: 'Total Interest', value: totalInterest }
   ];
 
+  const appSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "EMI Calculator Suite",
+    "url": "https://rupeeniti.in/emi-calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All"
+  };
+
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Helmet>
-        <title>EMI Calculator India 2026 — Home, Car and Personal Loan | RupeeNiti</title>
-        <meta name="description" content="Calculate your monthly EMI instantly. Home loan, car loan, personal loan EMI calculator with amortization schedule. Free, no login." />
-      </Helmet>
+      <SEO 
+        title="EMI Calculator India 2026 — Home, Car and Personal Loan | RupeeNiti"
+        description="Calculate your monthly EMI instantly. Home loan, car loan, personal loan EMI calculator with amortization schedule. Free, no login."
+        path="/emi-calculator"
+        schemaList={[appSchema]}
+        breadcrumb={[{name: 'Home', item: '/'}, {name: 'EMI Calculator', item: '/emi-calculator'}]}
+      />
 
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-[#14532D]">EMI Calculator</h1>
